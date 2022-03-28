@@ -13,21 +13,25 @@ function App() {
     setNotes(notes.filter((notes) => notes.id !== idToDelete))
   }
 
+  
   function onAddNote  (e) {
     console.log(e)
     const newNote = {
       id : uuid(),
-
+      
       title: "untitled note",
-
+      
       body: "",
-
+      
       lastModified: Date.now()
     }
     return setNotes([newNote, ...notes])
   }
-
-
+  
+const getActiveNote = () => {
+  return notes.find((note) => note.id === activeNote)
+}
+  
   return (
     <div className='App'> 
     <SideBar notes={notes} 
@@ -36,7 +40,7 @@ function App() {
     activeNote={activeNote}
     setActiveNote={setActiveNote}
     />
-    <Main activeNote={activeNote}/>
+    <Main activeNote={getActiveNote()}/>
     
     </div>
     
