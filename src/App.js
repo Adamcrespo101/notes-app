@@ -7,6 +7,11 @@ import Main from './Main';
 function App() {
 
   const [notes, setNotes] = useState([])
+  const [activeNote, setActiveNote] = useState(false)
+
+  function onDeleteNote(idToDelete){
+    setNotes(notes.filter((notes) => notes.id !== idToDelete))
+  }
 
   function onAddNote  (e) {
     console.log(e)
@@ -25,8 +30,13 @@ function App() {
 
   return (
     <div className='App'> 
-    <SideBar notes={notes} onAddNote={onAddNote} />
-    <Main />
+    <SideBar notes={notes} 
+    onAddNote={onAddNote} 
+    onDeleteNote={onDeleteNote}
+    activeNote={activeNote}
+    setActiveNote={setActiveNote}
+    />
+    <Main activeNote={activeNote}/>
     
     </div>
     
